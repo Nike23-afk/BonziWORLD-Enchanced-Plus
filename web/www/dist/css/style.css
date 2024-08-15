@@ -2239,3 +2239,32 @@ input[type="checkbox"]:hover, input[type="radio"]:hover  {
 .context-menu-accesskey  {
     text-decoration: underline;
 }
+
+.poll-container {
+  text-align: center;
+}
+
+.poll-option {
+  position: relative;
+  margin: 10px 0;
+  height: 30px;
+  cursor: pointer;
+}
+
+.poll-option span {
+  position: relative;
+  z-index: 1;
+  line-height: 30px;
+}
+
+.innerbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+.green { background-color: #4CAF50; }
+.red { background-color: #F44336; }
+
