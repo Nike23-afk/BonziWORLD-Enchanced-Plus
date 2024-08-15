@@ -1775,6 +1775,44 @@ function bzSetup() {
 			var b = bonzis[data.guid];
 			b.typing(false)
 		}),
+		socket.on("poll", function(data) {
+  var pollHtml = `
+    <div class="poll-container">
+      <h3>${data.question}</h3>
+      <div class="poll-option" data-option="0">
+        <div class="innerbar green" style="width: 0%"></div>
+        <span>${data.options[0]}</span>
+      </div>
+      <div class="poll-option" data-option="1">
+        <div class="innerbar red" style="width: 0%"></div>
+        <span>${data.options[1]}</span>
+      </div>
+    </div>
+  `;
+  
+  bonziAlert(pollHtml, data.guid);
+  
+  $(".poll-option").click(function() {
+    var option = $(this).data("option");
+    socket.emit("pollVote", {
+      guid: data.guid,
+      option: option
+    });
+  });
+});
+
+socket.on("pollUpdate", function(data) {
+  var total = data.votes[0] + data.votes[1];
+  var percentages = [
+    (data.votes[0] / total) * 100,
+    (data.votes[1] / total) * 100
+  ];
+  
+  $(".poll-option").each(function(index) {
+    $(this).find(".innerbar").css("width", percentages[index] + "%");
+  });
+});
+
 	$("#chat_message").keydown(function (key) {
 		if (key.which == 13) {
 			typing = false;
