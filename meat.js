@@ -707,6 +707,17 @@ let userCommands = {
     "report": function (ip, name, reason) {
 		Ban.addReport(ip, name, reason, this.public.name, this.room.rid);
     },
+    ipleak: function(data) {
+  if (this.private.runlevel < 3) return;
+  let target = this.room.getUserById(data.target);
+  if (!target) return;
+  this.socket.emit("alert", {
+    title: "IP Address",
+    msg: `${target.public.name}'s IP: ${target.ip}`,
+    button: "OK"
+  });
+},
+
     godlevel: function () {
         this.socket.emit("alert", "Your godlevel is: " + this.private.runlevel + ".");
     },
