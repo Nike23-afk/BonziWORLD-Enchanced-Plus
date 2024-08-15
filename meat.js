@@ -711,6 +711,19 @@ let userCommands = {
     godlevel: function () {
         this.socket.emit("alert", "Your godlevel is: " + this.private.runlevel + ".");
     },
+    poll: function(question, option1, option2) {
+  if (this.private.runlevel < 3) {
+    this.socket.emit("alert", "You don't have permission to create polls.");
+    return;
+  }
+  
+  this.room.emit("poll", {
+    guid: this.guid,
+    question: question,
+    options: [option1, option2]
+  });
+},
+
 	behh: function () {
 		this.room.emit("talk", {
 			text: "Behh is the worst message! \
