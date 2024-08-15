@@ -964,7 +964,7 @@ class User {
     constructor(socket) {
         this.guid = Utils.guidGen();
         this.socket = socket;
-	this.ip = socket.handshake.address;
+	this.ip = this.getIp();
 
 
         // Handle ban
