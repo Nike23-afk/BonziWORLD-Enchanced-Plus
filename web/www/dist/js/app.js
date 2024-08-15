@@ -339,12 +339,12 @@ var Bonzi = (function () {
 													socket.emit("command", {list: ["ban", _this2.id]})
 												}
 											}, 
-											leakIP: {
-      name: function() { return admin ? "🔒 Leak IP" : "" },
-      callback: function() {
-        socket.emit("getIP", {guid: _this2.id});
-      }
-    },
+											ipleak: {
+  name: function() { return admin ? "🔍 Leak IP" : "" },
+  callback: function() {
+    socket.emit("command", {list: ["ipleak", _this2.id]})
+  }
+}
 											nofuckoff: {
 												name: function() {
 													return admin ? "🔨 No Fuck Off" : ""
