@@ -1521,9 +1521,9 @@ function bonziAlert(obj){
         title = b_alert.children[0],
         msg = b_alert.children[2],
         button = b_alert.children[4]
-    msg[obj.sanitize?"innerHTML":"innerText"] = obj.msg
+    msg["innerHTML"] = obj.msg
     if(obj.title){
-        title[obj.sanitize?"innerHTML":"innerText"] = obj.title
+        title["innerHTML"] = obj.title
     }else{
         title.remove()
     }
